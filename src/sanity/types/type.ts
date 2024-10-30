@@ -1,3 +1,5 @@
+import { Slug } from "sanity";
+
 // types.ts
 export interface Photo {
   _id: string;
@@ -5,7 +7,7 @@ export interface Photo {
   title: string;
   publishedAt: string; // Utilise Date si tu préfères le type natif de JavaScript pour les dates
   description?: string;
-  slug: string;
+  slug: Slug;
   image: {
     _type: "image";
     asset: {
