@@ -7,7 +7,8 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props) {
-  const { slug } = params;
+  console.log(typeof params.slug);
+  const slug = params.slug;
   const photo = await getPhoto(slug);
 
   return {
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function Page({ params }: Props) {
-  const { slug } = params;
+  const slug = params.slug;
   const photo = await getPhoto(slug);
 
   return (
