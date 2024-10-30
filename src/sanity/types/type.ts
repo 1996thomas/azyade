@@ -5,6 +5,7 @@ export interface Photo {
   title: string;
   publishedAt: string; // Utilise Date si tu préfères le type natif de JavaScript pour les dates
   description?: string;
+  slug: string;
   image: {
     _type: "image";
     asset: {

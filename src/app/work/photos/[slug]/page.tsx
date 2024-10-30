@@ -2,13 +2,10 @@ import { getPhoto } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 
-type Props = {
-  params: { slug: string };
-};
+type Props = Promise<{ slug: string }>;
 
-export async function generateMetadata({ params }: Props) {
-  console.log(typeof params.slug);
-  const slug = params.slug;
+export async function generateMetadata({ params }: { params: Props }) {
+  const { slug } = await params;
   const photo = await getPhoto(slug);
 
   return {
@@ -29,8 +26,8 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function Page({ params }: Props) {
-  const slug = params.slug;
+export default async function Page({ params }: { params: Props }) {
+  const { slug } = await params;
   const photo = await getPhoto(slug);
 
   return (
