@@ -6,12 +6,9 @@ type Props = {
   params: { slug: string };
 };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const photo = await getPhoto(params.slug);
+export async function generateMetadata({ params }: Props) {
+  const { slug } = params;
+  const photo = await getPhoto(slug);
 
   return {
     title: photo?.title || "Default Title",
