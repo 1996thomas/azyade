@@ -8,8 +8,8 @@ export default async function PhotosPage() {
   return (
     <div className="flex justify-between">
       {photos.map((photo) => (
-        <Link href={`/photos/${photo.slug.current}`}>
-          <PhotoCards key={photo._id} photo={photo} />
+        <Link key={photo._id} href={`/photos/${photo.slug.current}`}>
+          <PhotoCards photo={photo} />
         </Link>
       ))}
     </div>
