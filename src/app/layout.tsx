@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { getPhotos, getSettings } from "@/sanity/lib/fetch";
+import { getSettings } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 
 const geistSans = localFont({
