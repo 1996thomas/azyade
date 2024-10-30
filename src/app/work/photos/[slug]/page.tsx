@@ -6,7 +6,11 @@ type Props = {
   params: { slug: string };
 };
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const photo = await getPhoto(params.slug);
 
   return {
