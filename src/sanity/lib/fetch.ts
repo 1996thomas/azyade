@@ -1,6 +1,5 @@
 import { createClient, groq } from "next-sanity";
 import client from "./client";
-import { create } from "domain";
 import { Photo } from "../types/type";
 
 export async function getPhotos() {
