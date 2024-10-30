@@ -1,4 +1,3 @@
-import { defineQuery } from "next-sanity";
 import { defineField, defineType } from "sanity";
 
 export const photoType = defineType({

@@ -1,8 +1,8 @@
 import { createClient, groq } from "next-sanity";
 import client from "./client";
-import { Photo } from "../types/type";
+import { Photo, PHOTO_QUERYResult } from "../types/type";
 
-export async function getPhotos() {
+export async function getPhotos(): Promise<PHOTO_QUERYResult> {
   return createClient(client).fetch(groq`*[_type == "photo"]`);
 }
 
