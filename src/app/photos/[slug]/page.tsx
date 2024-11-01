@@ -4,43 +4,34 @@ import Image from "next/image";
 
 type Props = Promise<{ slug: string }>;
 
-export async function generateMetadata({ params }: { params: Props }) {
-  const { slug } = await params;
-  const photo = await getPhoto(slug);
-
-  return {
-    title: photo?.title || "Default Title",
-    description: photo?.description || "Default description",
-    openGraph: {
-      title: photo?.title,
-      description: photo?.description,
-      images: [
-        {
-          url: urlFor(photo?.image).url(),
-          width: 800,
-          height: 600,
-          alt: photo?.image?.alt || "Image",
-        },
-      ],
-    },
-  };
-}
-
 export default async function Page({ params }: { params: Props }) {
   const { slug } = await params;
   const photo = await getPhoto(slug);
-
+  console.log(photo.gallery?.images);
   return (
-    <div>
-      <p>{photo?.title}</p>
-      {photo?.image && (
-        <Image
-          alt={photo.image.alt || "Image"}
-          src={urlFor(photo.image).url()}
-          width={300}
-          height={300}
-        />
-      )}
-    </div>
+    <>
+      <div>
+        <p>{photo?.title}</p>
+        {photo?.image && (
+          <Image
+            alt={photo.image.alt || "Image"}
+            src={urlFor(photo.image).url()}
+            width={300}
+            height={300}
+          />
+        )}
+      </div>
+      <div>
+        {photo.gallery?.images.map((image, index) => (
+          <Image
+            key={index}
+            alt={image.alt || "Gallery Image"}
+            src={urlFor(image).url()}
+            width={300}
+            height={300}
+          />
+        ))}
+      </div>
+    </>
   );
 }

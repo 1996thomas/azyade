@@ -23,6 +23,7 @@ export const structure: StructureResolver = (S, context) =>
       //   icon: PlugIcon,
       // }),
       S.divider(),
+      S.divider(),
       // Filter singleton documents out of the default S.documentTypeListItems() to prevent them from being rendered as lists or as duplicates
       ...filteredDocumentListItems({ S, context }),
     ]);

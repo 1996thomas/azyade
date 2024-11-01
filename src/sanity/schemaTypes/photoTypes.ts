@@ -17,7 +17,7 @@ export const photoType = defineType({
       type: "slug",
       options: {
         source: "title",
-        maxLength: 200, // will be ignored if slugify is set
+        maxLength: 200,
         slugify: (input) =>
           input.toLowerCase().replace(/\s+/g, "-").slice(0, 200),
       },
@@ -48,6 +48,11 @@ export const photoType = defineType({
           type: "string",
         },
       ],
+    }),
+    defineField({
+      name: "gallery",
+      title: "Gallery",
+      type: "gallery", // Référence au type d'objet défini plus haut
     }),
   ],
 });
