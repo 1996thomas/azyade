@@ -70,11 +70,11 @@ export default function Carousel({ gallery }: { gallery: Gallery }) {
       ref={carouselContainer}
       className="w-full h-full overflow-hidden relative"
     >
-      <div className="absolute top-0 left-5 text-[30vw] font-black tracking-tighter text-gray-100">
+      <div className="absolute top-[-10vw] left-5 text-[30vw] font-black tracking-tighter text-gray-100">
         {currentIndex} / {gallery.images.length}
       </div>
       <div
-        className="slider-wrapper w-max p-[10vw] h-full flex items-center gap-[5vw]"
+        className="slider-wrapper w-max h-screen flex items-center gap-[5vw] "
         ref={sliderWrapper}
       >
         {gallery.images.map((image, index) => (
