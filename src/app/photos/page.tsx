@@ -1,7 +1,7 @@
 import { getPhotos } from "@/sanity/lib/fetch";
 import React from "react";
-import PhotoCards from "../components/PhotoCards";
 import Link from "next/link";
+import PhotoCards from "../components/PhotoCards";
 
 export default async function PhotosPage() {
   const photos = await getPhotos();

@@ -9,7 +9,6 @@ export default function PhotoCards({ photo }: { photo: Photo }) {
       className="bg-cover bg-center relative h-[20vw] w-fit"
     >
       <p>{photo.title}</p>
-      <p>{photo.description}</p>
     </div>
   );
 }

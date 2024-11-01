@@ -31,8 +31,9 @@ export const photoType = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "text",
-      validation: (rule) => rule.max(200),
+      type: "array",
+      of: [{ type: "block" }],
+      // validation: (rule) => rule.maxLength(1200),
     }),
     defineField({
       name: "image",
@@ -52,7 +53,7 @@ export const photoType = defineType({
     defineField({
       name: "gallery",
       title: "Gallery",
-      type: "gallery", // Référence au type d'objet défini plus haut
+      type: "gallery",
     }),
   ],
 });

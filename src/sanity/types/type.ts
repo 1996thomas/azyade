@@ -1,3 +1,4 @@
+import { PortableTextBlock, PortableTextProps } from "next-sanity";
 import { Slug } from "sanity";
 
 // types.ts
@@ -6,7 +7,7 @@ export interface Photo {
   _type: "photo";
   title: string;
   publishedAt: string; // Utilise Date si tu préfères le type natif de JavaScript pour les dates
-  description?: string;
+  description?: PortableTextBlock;
   slug: Slug;
   gallery?: Gallery;
   image: {
