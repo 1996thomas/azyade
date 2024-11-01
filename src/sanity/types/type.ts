@@ -1,4 +1,4 @@
-import { PortableTextBlock, PortableTextProps } from "next-sanity";
+import { PortableTextBlock } from "next-sanity";
 import { Slug } from "sanity";
 
 // types.ts
