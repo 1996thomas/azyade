@@ -1,13 +1,13 @@
 import { getPhotos } from "@/sanity/lib/fetch";
-
+import HeroProd from "./components/HeroProd";
+import PhotosList from "./components/PhotosList";
 
 export default async function Home() {
-  const photo = await getPhotos();
+  const photos = await getPhotos();
   return (
     <div>
-      <p>
-        {photo[0].title}
-        </p>
+      <HeroProd />
+      <PhotosList list={photos} />
     </div>
   );
 }

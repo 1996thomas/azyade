@@ -10,6 +10,7 @@ export interface Photo {
   description?: PortableTextBlock;
   slug: Slug;
   gallery?: Gallery;
+  category: string;
   image: {
     _type: "image";
     asset: {

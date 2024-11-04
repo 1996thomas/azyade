@@ -4,7 +4,7 @@ import "./globals.css";
 import { getSettings } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 import Header from "./components/Header";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -51,8 +51,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
-        <main className="
-        ">{children}</main>
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

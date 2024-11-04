@@ -13,8 +13,8 @@ export default function Carousel({ gallery }: { gallery: Gallery }) {
   const carouselContainer = useRef<HTMLDivElement | null>(null);
   const [maxScroll, setMaxScroll] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(1);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
-  // Function to update maxScroll based on current window size
   const updateMaxScroll = () => {
     if (sliderWrapper.current) {
       const calculatedMaxScroll =
@@ -34,13 +34,13 @@ export default function Carousel({ gallery }: { gallery: Gallery }) {
         ease: "none",
         scrollTrigger: {
           trigger: carouselContainer.current,
-          start: "5% top",
+          start: "top top",
           end: () => `+=${maxScroll}`,
           scrub: 1,
           pin: true,
           onUpdate: (self) => {
             const newIndex = Math.min(
-              Math.ceil(self.progress * 0.9 * numSlides),
+              Math.ceil(self.progress * numSlides),
               numSlides
             );
             setCurrentIndex(newIndex || 1);
@@ -65,6 +65,17 @@ export default function Carousel({ gallery }: { gallery: Gallery }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Function to open zoomed image
+  const openZoomedImage = (imageUrl: string) => {
+    setZoomedImage(imageUrl);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeZoomedImage = () => {
+    setZoomedImage(null);
+    document.body.style.overflow = "auto";
+  };
+
   return (
     <div
       ref={carouselContainer}
@@ -74,11 +85,12 @@ export default function Carousel({ gallery }: { gallery: Gallery }) {
         {currentIndex} / {gallery.images.length}
       </div>
       <div
-        className="slider-wrapper w-max h-screen flex items-center gap-[5vw] "
+        className="slider-wrapper w-max h-screen flex items-center gap-[5vw]"
         ref={sliderWrapper}
       >
         {gallery.images.map((image, index) => (
           <div
+            onClick={() => openZoomedImage(`${urlFor(image).url()}`)}
             className={`slide h-auto w-[40vw] max-w-[80%] transition-all duration-300 ease-in-out ${
               currentIndex - 1 === index
                 ? "scale-105 opacity-100"
@@ -96,6 +108,17 @@ export default function Carousel({ gallery }: { gallery: Gallery }) {
           </div>
         ))}
       </div>
+      {zoomedImage && (
+        <div className="zoomed-image-container" onClick={closeZoomedImage}>
+          <Image
+            src={zoomedImage}
+            alt="zoomed-image"
+            layout="fill"
+            objectFit="contain"
+            className="object-cover"
+          />
+        </div>
+      )}
     </div>
   );
 }

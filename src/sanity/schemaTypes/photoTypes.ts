@@ -12,6 +12,18 @@ export const photoType = defineType({
       validation: (rule) => rule.required().min(5).max(50),
     }),
     defineField({
+      name: "category",
+      title: "Category",
+      type: "string",
+      options: {
+        list: [
+          { title: "Personal Project", value: "personal" },
+          { title: "Commands", value: "commands" },
+        ],
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
