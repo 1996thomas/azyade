@@ -2,7 +2,7 @@ import { defineType, defineField } from "sanity";
 
 export const galleryType = defineType({
   name: "gallery",
-  type: "object", // Utilisé comme type d'objet pour être réutilisable
+  type: "object", // Used as an object type for reusability
   title: "Gallery",
   fields: [
     defineField({
@@ -11,8 +11,7 @@ export const galleryType = defineType({
       title: "Images",
       of: [
         {
-          name: "image",
-          type: "image",
+          type: "image", // Directly using the image type
           title: "Image",
           options: {
             hotspot: true,
@@ -29,26 +28,6 @@ export const galleryType = defineType({
       options: {
         layout: "grid",
       },
-    }),
-    defineField({
-      name: "display",
-      type: "string",
-      title: "Display as",
-      description: "How should we display these images?",
-      options: {
-        list: [
-          { title: "Stacked on top of each other", value: "stacked" },
-          { title: "In-line", value: "inline" },
-          { title: "Carousel", value: "carousel" },
-        ],
-        layout: "radio",
-      },
-    }),
-    defineField({
-      name: "zoom",
-      type: "boolean",
-      title: "Zoom enabled",
-      description: "Should we enable zooming of images?",
     }),
   ],
 });

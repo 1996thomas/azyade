@@ -91,11 +91,7 @@ export default function Carousel({ gallery }: { gallery: Gallery }) {
         {gallery.images.map((image, index) => (
           <div
             onClick={() => openZoomedImage(`${urlFor(image).url()}`)}
-            className={`slide h-auto w-[40vw] max-w-[80%] transition-all duration-300 ease-in-out ${
-              currentIndex - 1 === index
-                ? "scale-105 opacity-100"
-                : "scale-90 brightness-50"
-            }`}
+            className={`slide h-auto w-[40vw] max-w-[80%] transition-all duration-300 ease-in-out`}
             key={index}
           >
             <Image
