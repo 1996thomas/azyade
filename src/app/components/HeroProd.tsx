@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Plyr from "plyr-react";
 import { gsap } from "gsap";
 import "../styles/plyr.css";
