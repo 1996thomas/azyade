@@ -1,5 +1,4 @@
-import { PlugIcon } from "@sanity/icons";
-import { filteredDocumentListItems, singletonDocumentListItem, singletonDocumentListItems } from "sanity-plugin-singleton-tools";
+import { filteredDocumentListItems, singletonDocumentListItems } from "sanity-plugin-singleton-tools";
 import type { StructureResolver } from "sanity/structure";
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet

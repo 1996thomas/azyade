@@ -1,6 +1,5 @@
 import { getSettings } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
-import { Setting } from "@/sanity/types/type";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
