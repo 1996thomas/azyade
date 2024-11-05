@@ -10,15 +10,13 @@ export default function HeroProd() {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const lastMousePos = useRef({ x: 0, y: 0 });
-  const isHovering = useRef(false);
+  const isHovering = useRef(false);  
 
-  const videoIntensity = 0.4;
-  const textIntensity = 0.2;
+  // Different intensity values for video and text effects
+  const videoIntensity = 0.4; // Adjust this value for the video effect intensity
+  const textIntensity = 0.2; // Adjust this value for the text effect intensity
 
   useGSAP(() => {
-    // Check if running in the browser
-    if (typeof window === "undefined") return;
-
     const handleMove = (e: MouseEvent) => {
       if (!isHovering.current) return;
 
@@ -37,6 +35,7 @@ export default function HeroProd() {
       const maxY = window.scrollY + window.innerHeight - 30;
       const maxX = window.innerWidth - 30;
 
+      // Video animation
       gsap.to(videoRef.current, {
         x: gsap.utils.clamp(-maxX / 2, maxX / 2, videoMousePos.x - 20),
         y: gsap.utils.clamp(0, maxY, videoMousePos.y - 10),
@@ -47,6 +46,7 @@ export default function HeroProd() {
         duration: 1.3,
       });
 
+      // Inverted animation for text
       gsap.to(textRef.current, {
         x: -textMousePos.x,
         y: -textMousePos.y,
@@ -80,6 +80,7 @@ export default function HeroProd() {
       isHovering.current = false;
       gsap.killTweensOf([videoRef.current, textRef.current]);
 
+      // Reset video and text positions
       gsap.to([videoRef.current, textRef.current], {
         x: 0,
         y: 0,
