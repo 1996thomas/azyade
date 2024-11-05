@@ -11,7 +11,6 @@ type Props = Promise<{ slug: string }>;
 export default async function Page({ params }: { params: Props }) {
   const { slug } = await params;
   const photo = await getPhoto(slug);
-  // console.log(photo.gallery?.images);
   return (
     <>
       <div className="flex justify-between h-screen">

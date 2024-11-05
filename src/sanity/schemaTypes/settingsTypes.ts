@@ -25,6 +25,28 @@ export const settingType = defineType({
       title: "Site Image",
       type: "image",
     }),
+    defineField({
+      name: "social_links",
+      title: "Social Links",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "link",
+              title: "Link",
+              type: "string",
+            }),
+            defineField({
+              name: "image",
+              title: "image",
+              type: "image",
+            }),
+          ],
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

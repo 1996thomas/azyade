@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { useRef } from "react";
 
 export default function Template({ children }: { children: React.ReactNode }) {
-  console.log(children)
   const overlay = useRef(null);
   const content = useRef(null);
 

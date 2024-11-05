@@ -35,3 +35,15 @@ footer {
   max-width: 90vw;
   max-height: 90vh;
 }
+
+.custom-plyr {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Optional: makes sure the video fills the area without stretching */
+}
+
+.plyr-react.plyr {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+}

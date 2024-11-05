@@ -1,6 +1,6 @@
 import { createClient, groq } from "next-sanity";
 import client from "./client";
-import { Photo, PHOTO_QUERYResult, Settings } from "../types/type";
+import { Photo, PHOTO_QUERYResult, Setting } from "../types/type";
 
 export async function getPhotos(): Promise<PHOTO_QUERYResult> {
   return createClient(client).fetch(groq`*[_type == "photo"]`);
@@ -13,6 +13,8 @@ export async function getPhoto(slug: string): Promise<Photo> {
   );
 }
 
-export async function getSettings(): Promise<Settings>{
-  return createClient(client).fetch(groq`*[_type == "settings"]`)
+export async function getSettings(): Promise<Setting> {
+  return createClient(client).fetch(
+    groq`*[_type == "settings"] | order(_updatedAt desc)[0]`
+  );
 }

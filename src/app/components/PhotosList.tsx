@@ -5,7 +5,6 @@ import Link from "next/link";
 import React from "react";
 
 export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {
-  console.log(list);
   return (
     <div className="mt-20 w-full">
       <ul className="flex flex-col">
@@ -16,13 +15,15 @@ export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {
           >
             <Link
               href={`photos/${item.slug.current}`}
-              className="flex justify-between items-center max-w-[80vw] mx-auto p-10"
+              className="flex justify-between items-center mx-auto"
             >
-              <div>
-                <p>{item.title}</p>
+              <div className="flex flex-col gap-4 pl-10">
+                <h3 className="leading-none font-semibold">{item.title}</h3>
                 <ul className="flex gap-3">
-                  <li className="text-xl px-4 py-1 border-black border-[1px] rounded-xl">photography</li>
-                  <li className="text-xl px-4 py-1 border-black border-[1px] rounded-xl">
+                  <li className="text-xl px-4 py-1 border-black border-[1px] ">
+                    photography
+                  </li>
+                  <li className="text-xl px-4 py-1 border-black border-[1px]">
                     {item.category}
                   </li>
                 </ul>

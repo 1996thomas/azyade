@@ -29,11 +29,16 @@ export interface Photo {
 
 export type PHOTO_QUERYResult = Photo[];
 
-interface Setting {
+interface SocialLink {
+  link: "string";
+  image: "image";
+}
+export interface Setting {
   _id: string;
-  _type: "photo";
+  _type: "settings"; // Corrigé le type de document pour settings
   site_title: string;
   site_description?: string;
+  social_links: SocialLink[];
   site_image: {
     _type: "image";
     asset: {
@@ -42,7 +47,6 @@ interface Setting {
     };
   };
 }
-export type Settings = Setting[];
 
 interface Image {
   _type: "image";
@@ -62,6 +66,4 @@ interface Image {
 export interface Gallery {
   _type: "gallery";
   images: Image[];
-  display: "stacked" | "inline" | "carousel";
-  zoom: boolean;
 }
