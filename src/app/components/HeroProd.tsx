@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import Plyr from "plyr-react";
 import { gsap } from "gsap";
-import "../styles/plyr.css";
+import "../css/plyr.css";
 import { useGSAP } from "@gsap/react";
 
 export default function HeroProd() {
