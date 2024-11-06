@@ -27,8 +27,8 @@ export default async function Page({ params }: { params: Props }) {
             className="bg-red-50 flex-1 object-cover"
             alt={photo.image.alt || "Image"}
             src={urlFor(photo.image).url()}
-            width={300}
-            height={300}
+            width={800}
+            height={800}
           />
         )}
       </div>

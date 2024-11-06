@@ -98,8 +98,8 @@ export default function Carousel({ gallery }: { gallery: Gallery }) {
               className="w-full object-cover"
               src={urlFor(image).url()}
               alt=""
-              width={400}
-              height={600}
+              width={800}
+              height={800}
             />
           </div>
         ))}
