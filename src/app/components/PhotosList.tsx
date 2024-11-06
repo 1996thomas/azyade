@@ -22,7 +22,7 @@ export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {
                 <ul className="flex gap-3">
                   {item.tags !== undefined &&
                     item.tags.map((item) => (
-                      <li className="text-xl px-4 py-1 border-black border-[1px]">
+                      <li key={item._id} className="text-xl px-4 py-1 border-black border-[1px]">
                         {item.name}
                       </li>
                     ))}
