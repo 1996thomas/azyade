@@ -1,19 +1,43 @@
 "use client";
-import React, { useRef } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import "../css/plyr.css";
 import { useGSAP } from "@gsap/react";
-import dynamic from 'next/dynamic'
-const Plyr = dynamic(() => import("plyr-react"), { ssr: false });
 
 export default function HeroProd() {
+  const [importedComp, setImportedComp] = useState<ReactElement>();
+
+  const plyrProps = {
+    source: {
+      type: "video",
+      sources: [
+        {
+          src: "FD8XuAXHO2A",
+          provider: "youtube",
+        },
+      ],
+    },
+  };
+
+  useEffect(() => {
+    const importComp = async () => {
+      const myModule = await import("plyr-react");
+      const Plyr = myModule.default;
+      //@ts-expect-error/plyrProps-issues-to-be-fixed
+      setImportedComp(<Plyr {...plyrProps} />);
+    };
+    importComp();
+  }, []);
+
+  console.log(importedComp?.props.sources);
+
   const videoRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const lastMousePos = useRef({ x: 0, y: 0 });
-  const isHovering = useRef(false);  
+  const isHovering = useRef(false);
 
-  const videoIntensity = 0.4; 
+  const videoIntensity = 0.4;
   const textIntensity = 0.2;
 
   useGSAP(() => {
@@ -82,7 +106,6 @@ export default function HeroProd() {
         x: 0,
         y: 0,
         rotation: 0,
-        pointerEvents: "none",
         duration: 0.8,
       });
 
@@ -114,28 +137,10 @@ export default function HeroProd() {
         className="flex items-center justify-center w-[93vw] h-[73vh] overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500"
       >
         <div className="h-full w-full p-0">
-          <Plyr
-            autoPlay
-            loop
-            muted
-            playsInline
-            source={{
-              type: "video",
-              sources: [{ src: "289132521", provider: "vimeo" }],
-            }}
-            options={{
-              controls: [
-                "play",
-                "progress",
-                "current-time",
-                "mute",
-                "fullscreen",
-              ],
-            }}
-          />
+          {importedComp && importedComp !== undefined && importedComp}
         </div>
       </div>
-      <div className="z-50 absolute p-3 w-[93vw] h-[73vh] top-0 left-[50%] translate-x-[-50%] flex items-end">
+      <div className="pointer-events-none z-50 absolute p-3 w-[93vw] h-[73vh] top-0 left-[50%] translate-x-[-50%] flex items-end">
         <div ref={textRef} className="flex w-full items-end justify-between">
           <p className="text-5xl text-yellow-400 font-bold">SOLASTARGIE</p>
           <p className="text-4xl text-yellow-400">Un film de Aziyade Abauzit</p>
