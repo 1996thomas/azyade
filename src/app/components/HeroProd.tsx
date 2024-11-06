@@ -12,7 +12,7 @@ export default function HeroProd() {
       type: "video",
       sources: [
         {
-          src: "FD8XuAXHO2A",
+          src: "h3MASwVK7Kw",
           provider: "youtube",
         },
       ],
@@ -24,12 +24,10 @@ export default function HeroProd() {
       const myModule = await import("plyr-react");
       const Plyr = myModule.default;
       //@ts-expect-error/plyrProps-issues-to-be-fixed
-      setImportedComp(<Plyr {...plyrProps} />);
+      setImportedComp(<Plyr {...plyrProps}/>);
     };
     importComp();
   }, []);
-
-  console.log(importedComp?.props.sources);
 
   const videoRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -37,8 +35,8 @@ export default function HeroProd() {
   const lastMousePos = useRef({ x: 0, y: 0 });
   const isHovering = useRef(false);
 
-  const videoIntensity = 0.4;
-  const textIntensity = 0.2;
+  const videoIntensity = 0.3;
+  const textIntensity = 0.1;
 
   useGSAP(() => {
     const handleMove = (e: MouseEvent) => {
@@ -134,14 +132,17 @@ export default function HeroProd() {
       </h1>
       <div
         ref={videoRef}
-        className="flex items-center justify-center w-[93vw] h-[73vh] overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500"
+        className="flex items-center justify-center w-[80vw] aspect-video overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500"
       >
         <div className="h-full w-full p-0">
           {importedComp && importedComp !== undefined && importedComp}
         </div>
       </div>
-      <div className="pointer-events-none z-50 absolute p-3 w-[93vw] h-[73vh] top-0 left-[50%] translate-x-[-50%] flex items-end">
-        <div ref={textRef} className="flex w-full items-end justify-between">
+      <div className="pointer-events-none z-50 absolute p-3 w-[80vw] aspect-video top-0 left-[50%] translate-x-[-50%] flex items-end">
+        <div
+          ref={textRef}
+          className="flex w-full items-end overflow-hidden justify-between"
+        >
           <p className="text-5xl text-yellow-400 font-bold">SOLASTARGIE</p>
           <p className="text-4xl text-yellow-400">Un film de Aziyade Abauzit</p>
         </div>

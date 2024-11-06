@@ -10,7 +10,7 @@ export interface Photo {
   description?: PortableTextBlock;
   slug: Slug;
   gallery?: Gallery;
-  category: string;
+  tags?: Tag[];
   image: {
     _type: "image";
     asset: {
@@ -66,4 +66,10 @@ interface Image {
 export interface Gallery {
   _type: "gallery";
   images: Image[];
+}
+
+export interface Tag {
+  _id: string;
+  _type: "tag"; // Assurez-vous que le type correspond à celui dans Sanity
+  name: string;
 }

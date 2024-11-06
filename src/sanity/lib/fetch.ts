@@ -3,8 +3,40 @@ import client from "./client";
 import { Photo, PHOTO_QUERYResult, Setting } from "../types/type";
 
 export async function getPhotos(): Promise<PHOTO_QUERYResult> {
-  return createClient(client).fetch(groq`*[_type == "photo"]`);
+  return createClient(client).fetch(
+    groq`*[_type == "photo"]{
+      _id,
+      title,
+      slug,
+      publishedAt,
+      description,
+      image {
+        _id,
+        alt,
+        asset->{
+          _id,
+          url
+        }
+      },
+      gallery {
+        _type,
+        images[]->{
+          _id,
+          alt,
+          asset->{
+            _id,
+            url
+          }
+        }
+      },
+      tags[]->{
+        _id,
+        name
+      }
+    }`
+  );
 }
+
 
 export async function getPhoto(slug: string): Promise<Photo> {
   return createClient(client).fetch(

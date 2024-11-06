@@ -20,12 +20,12 @@ export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {
               <div className="flex flex-col gap-4 pl-10">
                 <h3 className="leading-none font-semibold">{item.title}</h3>
                 <ul className="flex gap-3">
-                  <li className="text-xl px-4 py-1 border-black border-[1px] ">
-                    photography
-                  </li>
-                  <li className="text-xl px-4 py-1 border-black border-[1px]">
-                    {item.category}
-                  </li>
+                  {item.tags !== undefined &&
+                    item.tags.map((item) => (
+                      <li className="text-xl px-4 py-1 border-black border-[1px]">
+                        {item.name}
+                      </li>
+                    ))}
                 </ul>
               </div>
               <Image
