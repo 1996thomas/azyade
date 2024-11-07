@@ -7,6 +7,7 @@ export const settingType = defineType({
   type: "document",
   icon: PlayIcon,
   options: {
+    //@ts-expect-error/singleton error
     singleton: true,
   },
   fields: [

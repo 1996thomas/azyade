@@ -8,11 +8,16 @@ export default function HeroProd() {
   const [importedComp, setImportedComp] = useState<ReactElement>();
 
   const plyrProps = {
+    options: {
+      autoplay: true,
+      muted: true,
+      hideControls: true,
+    },
     source: {
       type: "video",
       sources: [
         {
-          src: "h3MASwVK7Kw",
+          src: "h4UqMyldS7Q",
           provider: "youtube",
         },
       ],
@@ -24,7 +29,7 @@ export default function HeroProd() {
       const myModule = await import("plyr-react");
       const Plyr = myModule.default;
       //@ts-expect-error/plyrProps-issues-to-be-fixed
-      setImportedComp(<Plyr {...plyrProps}/>);
+      setImportedComp(<Plyr {...plyrProps} />);
     };
     importComp();
   }, []);
@@ -126,27 +131,31 @@ export default function HeroProd() {
   }, []);
 
   return (
-    <div ref={wrapperRef} className="h-screen relative mt-10">
-      <h1 className="font-black text-6xl absolute bottom-0 left-[50%] translate-x-[-50%] tracking-[1px] text-nowrap">
-        AZIYADE ABAUZIT
-      </h1>
-      <div
-        ref={videoRef}
-        className="flex items-center justify-center w-[80vw] aspect-video overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500"
-      >
-        <div className="h-full w-full p-0">
-          {importedComp && importedComp !== undefined && importedComp}
-        </div>
-      </div>
-      <div className="pointer-events-none z-50 absolute p-3 w-[80vw] aspect-video top-0 left-[50%] translate-x-[-50%] flex items-end">
+    <>
+      <div ref={wrapperRef} className="h-screen relative mt-10">
+        <h1 className="font-black text-6xl absolute bottom-0 left-[50%] translate-x-[-50%] tracking-[1px] text-nowrap">
+          AZIYADE ABAUZIT
+        </h1>
         <div
-          ref={textRef}
-          className="flex w-full items-end overflow-hidden justify-between"
+          ref={videoRef}
+          className="flex items-center justify-center w-[80vw] aspect-video overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500"
         >
-          <p className="text-5xl text-yellow-400 font-bold">SOLASTARGIE</p>
-          <p className="text-4xl text-yellow-400">Un film de Aziyade Abauzit</p>
+          <div className="h-full w-full p-0">
+            {importedComp && importedComp !== undefined && importedComp}
+          </div>
+        </div>
+        <div className="pointer-events-none z-50 absolute p-3 w-[80vw] aspect-video top-0 left-[50%] translate-x-[-50%] flex items-end">
+          <div
+            ref={textRef}
+            className="flex w-full items-end overflow-hidden justify-between"
+          >
+            <p className="text-5xl text-yellow-400 font-bold">SOLASTARGIE</p>
+            <p className="text-4xl text-yellow-400">
+              Un film de Aziyade Abauzit
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -8,7 +8,7 @@ export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {
   const safeList = Array.isArray(list) ? list : [];
 
   return (
-    <div className="mt-20 w-full">
+    <div className="mt-20  mx-auto w-[90vw]">
       <ul className="flex flex-col">
         {safeList.length > 0 ? (
           safeList.map((item) => (
@@ -20,8 +20,8 @@ export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {
                 href={`photos/${item.slug.current}`}
                 className="flex justify-between items-center mx-auto"
               >
-                <div className="flex flex-col gap-4 pl-10">
-                  <h3 className="leading-none font-semibold">{item.title}</h3>
+                <div className="flex flex-col gap-5">
+                  <h3 className="font-semibold">{item.title}</h3>
                   <ul className="flex gap-3">
                     {item.tags &&
                       item.tags.map((tag) => (
@@ -35,7 +35,7 @@ export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {
                   </ul>
                 </div>
                 <Image
-                  className="aspect-square object-cover"
+                  className="aspect-square object-cover p-8"
                   src={urlFor(item.image).url()}
                   width={300}
                   height={300}
