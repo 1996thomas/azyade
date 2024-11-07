@@ -14,7 +14,7 @@ export default function WallPhoto({ photo }: { photo: Image }) {
   return (
     <group position={[0, 1, 6]}>
       <pointLight color={"white"} intensity={10} position={[0, 2, -0.2]} />
-      <Plane args={[2, 3]} position={[0, 0, -0.0309]}>
+      <Plane args={[2, 3]} position={[0, 0, -0.0309]} rotation-y={Math.PI}>
         <meshStandardMaterial side={DoubleSide} map={texture} />
       </Plane>
       <Box args={[2, 3, 0.05]}>
