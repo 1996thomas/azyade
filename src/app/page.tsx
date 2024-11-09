@@ -1,5 +1,4 @@
 import { getPhotos } from "@/sanity/lib/fetch";
-import PhotosList from "./components/PhotosList";
 import HeroProd from "./components/HeroProd";
 import PhotoCards from "./components/PhotoCards";
 import Link from "next/link";

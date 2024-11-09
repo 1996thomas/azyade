@@ -1,10 +1,9 @@
 "use client";
 import { urlFor } from "@/sanity/lib/image";
-import { Photo, PHOTO_QUERYResult } from "@/sanity/types/type";
+import { PHOTO_QUERYResult } from "@/sanity/types/type";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import SkeletonPhotoList from "./SkeletonPhotoList";
 import SkeletonPhotoCards from "./SkeletonPhotoCards";
 
 export default function PhotoCards({ list }: { list: PHOTO_QUERYResult }) {

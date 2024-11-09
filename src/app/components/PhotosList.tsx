@@ -4,7 +4,6 @@ import { PHOTO_QUERYResult } from "@/sanity/types/type";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import SkeletonPhoto from "./SkeletonPhotoList";
 import SkeletonPhotoList from "./SkeletonPhotoList";
 
 export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {

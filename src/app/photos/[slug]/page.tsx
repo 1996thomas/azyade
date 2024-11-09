@@ -1,5 +1,5 @@
 import SwiperCarousel from "@/app/components/SwiperCarousel";
-import { getPhoto, getPhotoTags, getTags } from "@/sanity/lib/fetch";
+import { getPhoto, getPhotoTags } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
