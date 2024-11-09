@@ -1,20 +1,41 @@
+'use client'
 import { urlFor } from "@/sanity/lib/image";
 import { PHOTO_QUERYResult } from "@/sanity/types/type";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import SkeletonPhoto from "./SkeletonPhotoList";
+import SkeletonPhotoList from "./SkeletonPhotoList";
 
 export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simuler un délai de chargement de 3 secondes
+    const timeoutId = setTimeout(() => {
+      if (list && list.length > 0) {
+        setIsLoading(false);
+      }
+    }, 3000); // Délai de 3 secondes
+
+    // Nettoyage du timeout pour éviter les fuites de mémoire
+    return () => clearTimeout(timeoutId);
+  }, [list]);
+
   const safeList = Array.isArray(list) ? list : [];
 
   return (
-    <div className="mt-20  mx-auto w-[90vw]">
+    <div className="mt-20 mx-auto w-[90vw]">
       <ul className="flex flex-col">
-        {safeList.length > 0 ? (
+        {isLoading ? (
+          // Display skeletons if data is still loading
+          Array.from({ length: 5 }).map((_, idx) => <SkeletonPhotoList key={idx} />)
+        ) : // Render the actual list if data is loaded
+        safeList.length > 0 ? (
           safeList.map((item) => (
             <li
               key={item._id}
-              className="text-5xl border-black border-b-[1px] first:border-t-[1px] "
+              className="text-5xl border-black border-b-[1px] first:border-t-[1px]"
             >
               <Link
                 href={`photos/${item.slug.current}`}
@@ -45,7 +66,7 @@ export default function PhotosList({ list }: { list: PHOTO_QUERYResult }) {
             </li>
           ))
         ) : (
-          <li>No photos available</li> // You can show a message if there are no items
+          <li>No photos available</li>
         )}
       </ul>
     </div>

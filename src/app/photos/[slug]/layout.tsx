@@ -1,5 +1,5 @@
 // app/photos/[slug]/layout.tsx
-import { getPhoto } from "@/sanity/lib/fetch";
+import { getPhoto, getTags } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 type Props = Promise<{ slug: string }>;
 

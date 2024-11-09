@@ -40,7 +40,7 @@ export default function HeroProd() {
   const lastMousePos = useRef({ x: 0, y: 0 });
   const isHovering = useRef(false);
 
-  const videoIntensity = 0.3;
+  const videoIntensity = 0.1;
   const textIntensity = 0.1;
 
   useGSAP(() => {
@@ -73,8 +73,12 @@ export default function HeroProd() {
       });
 
       gsap.to(textRef.current, {
-        x: -textMousePos.x,
-        y: -textMousePos.y,
+        x: -gsap.utils.clamp(-maxX / 2, maxX / 2, textMousePos.x - 20),
+        y: - gsap.utils.clamp(0, maxY, textMousePos.y - 10),
+        rotation:
+          speed *
+          videoIntensity *
+          (textMousePos.x > lastMousePos.current.x ? 1 : -1),
         duration: 1.3,
       });
 
@@ -132,19 +136,16 @@ export default function HeroProd() {
 
   return (
     <>
-      <div ref={wrapperRef} className="h-screen relative mt-10">
-        <h1 className="font-black text-6xl absolute bottom-0 left-[50%] translate-x-[-50%] tracking-[1px] text-nowrap">
-          AZIYADE ABAUZIT
-        </h1>
+      <div ref={wrapperRef} className="h-screen relative mt-20">
         <div
           ref={videoRef}
-          className="flex items-center justify-center w-[80vw] aspect-video overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500"
+          className="flex items-center justify-center w-[82vw] aspect-video overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500"
         >
           <div className="h-full w-full p-0">
             {importedComp && importedComp !== undefined && importedComp}
           </div>
         </div>
-        <div className="pointer-events-none z-50 absolute p-3 w-[80vw] aspect-video top-0 left-[50%] translate-x-[-50%] flex items-end">
+        <div className="pointer-events-none z-50 absolute p-3 w-[82vw] aspect-video top-0 left-[50%] translate-x-[-50%] flex items-end">
           <div
             ref={textRef}
             className="flex w-full items-end overflow-hidden justify-between"

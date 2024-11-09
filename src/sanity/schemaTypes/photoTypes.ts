@@ -64,7 +64,7 @@ export const photoType = defineType({
           to: [{ type: "tag" }],
         },
       ],
-      validation: (rule) => rule.max(2),
+      validation: (rule) => rule.max(3),
     }),
   ],
 });

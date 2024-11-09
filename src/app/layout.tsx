@@ -12,10 +12,15 @@ const geistSans = localFont({
   weight: "100 900",
 });
 
-const fujiSans = localFont({
-  src: "./fonts/FujiSans/PPFuji-Bold.woff",
-  variable: "--font-fuji-mono",
-  weight: "100 900",
+const groteskBold = localFont({
+  src: "./fonts/PPRightGrotesk-Bold.woff",
+  variable: "--font-grotesk-bold",
+  weight: "900",
+});
+const groteskMedium = localFont({
+  src: "./fonts/PPRightGrotesk-Medium.woff",
+  variable: "--font-grotesk-medium",
+  weight: "900",
 });
 
 // Fonction asynchrone pour générer les métadonnées
@@ -47,7 +52,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${fujiSans.variable} antialiased`}
+        className={`${geistSans.variable} ${groteskBold.variable} ${groteskMedium.variable} antialiased`}
       >
         <Header />
         <main>{children}</main>

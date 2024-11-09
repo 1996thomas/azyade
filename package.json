@@ -18,6 +18,7 @@
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.62.2",
     "@types/three": "^0.169.0",
+    "@uidotdev/usehooks": "^2.4.1",
     "dotenv": "^16.4.5",
     "gsap": "^3.12.5",
     "hls": "^0.0.1",
@@ -31,6 +32,7 @@
     "sanity": "^3.62.2",
     "sanity-plugin-singleton-tools": "^1.1.0",
     "styled-components": "^6.1.13",
+    "swiper": "^11.1.14",
     "three": "^0.170.0"
   },
   "devDependencies": {

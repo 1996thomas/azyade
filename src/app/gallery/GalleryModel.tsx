@@ -9,7 +9,7 @@ export function GalleryModel() {
         castShadow
         receiveShadow
         //@ts-expect-error/need to recheck this later
-        geometry={nodes.Object_4.geometry}
+        geometry={nodes.Object_4.geometry} 
         material={materials.Gallery_Baked}
       />
       <mesh

@@ -36,7 +36,7 @@ export default function Controllers() {
   const { WALK_SPEED, RUN_SPEED, ROTATION_SPEED } = useControls(
     "Character Control",
     {
-      WALK_SPEED: { value: 1, min: 0.1, max: 4, step: 0.1 },
+      WALK_SPEED: { value: 3, min: 0.1, max: 4, step: 0.1 },
       RUN_SPEED: { value: 2, min: 0.1, max: 4, step: 0.1 },
       ROTATION_SPEED: {
         value: degToRad(0.5),
@@ -121,12 +121,12 @@ export default function Controllers() {
     }
   });
   return (
-    <RigidBody colliders={false} position={[1, 1, 1]} lockRotations ref={rb}>
+    <RigidBody colliders={false} position={[0, 0, 2]} lockRotations ref={rb}>
       <group ref={container}>
         <group ref={cameraTarget} position-z={1.5} />
         <group ref={cameraPosition} position-y={3} position-z={-6} />
         <group ref={character}>
-          <Box args={[0.5, 1.5, 0.5]}>
+          <Box args={[0.5, 1.5, 0.5]} receiveShadow castShadow>
             <meshStandardMaterial color={"red"} />
           </Box>
         </group>

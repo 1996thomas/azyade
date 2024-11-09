@@ -2,12 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --font-grotesk: sans-serif;
+}
+
 body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: var(--font-grotesk-medium), sans-serif;
 }
-
+h1,
+h2,
+h3 {
+  font-family: var(--font-grotesk-bold), sans-serif;
+  font-weight: 900;
+}
 main {
   flex: 1;
   min-height: 100vh;
@@ -46,4 +56,21 @@ footer {
   width: 100% !important;
   height: 100% !important;
   max-width: 100% !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ccc !important;
+}
+
+.swiper-pagination-bullet{
+  scale: 1.5 !important;
+  background-color: #ff501f !important;
+
+}
+
+.swiper-pagination-bullet-active{
+  scale: 1.5 !important;
+
+
 }

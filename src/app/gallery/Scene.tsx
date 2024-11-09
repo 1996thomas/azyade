@@ -1,12 +1,18 @@
 "use client";
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import { KeyboardControls, Stats } from "@react-three/drei";
+import {
+  Environment,
+  KeyboardControls,
+  SpotLight,
+  Stats,
+} from "@react-three/drei";
 import { GalleryModel } from "./GalleryModel";
 import { Physics, RigidBody } from "@react-three/rapier";
 import Controllers from "./Controllers";
 import WallPhoto from "./WallPhoto";
 import { PHOTO_QUERYResult } from "@/sanity/types/type";
+import { ReinhardToneMapping } from "three";
 
 const keyboardMap = [
   { name: "forward", keys: ["ArrowUp", "KeyW"] },
@@ -26,9 +32,29 @@ export default function Scene({ photos }: { photos: PHOTO_QUERYResult }) {
       >
         <KeyboardControls map={keyboardMap}>
           <Stats />
-          <Canvas shadows camera={{ position: [3, 3, 3], near: 0.1, fov: 40 }}>
+          <Canvas
+            shadows
+            gl={{
+              toneMapping: ReinhardToneMapping,
+              toneMappingExposure: 2,
+            }}
+            camera={{ position: [3, 3, 3], near: 0.1, fov: 40 }}
+          >
+            <hemisphereLight
+              castShadow
+              args={["#ffffff", "#444444", 0.2]} // Couleur du ciel, couleur du sol, intensité
+              position={[0, 5, 0]} // Position pour éclairer d'en haut
+            />
+
+            <SpotLight
+              castShadow
+              distance={5}
+              decay={1}
+              penumbra={0.5}
+              position-y={3}
+            />
+            <Environment preset="night" environmentIntensity={0.2} />
             <WallPhoto photo={testPhoto} />
-            <ambientLight intensity={0.05} color={"white"} />
             <Physics>
               <Controllers></Controllers>
               <RigidBody type="fixed" colliders="trimesh">
