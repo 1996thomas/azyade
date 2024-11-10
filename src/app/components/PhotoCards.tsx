@@ -23,7 +23,7 @@ export default function PhotoCards({ list }: { list: PHOTO_QUERYResult }) {
 
   return (
     <div className=" mx-auto w-[80vw]">
-      <ul className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {isLoading ? (
           Array.from({ length: 12 }).map((_, idx) => (
             <SkeletonPhotoCards key={idx} />

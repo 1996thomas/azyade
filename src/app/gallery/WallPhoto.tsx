@@ -12,9 +12,13 @@ export default function WallPhoto({ photo }: { photo: Image }) {
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.setScalar(1);
   return (
-    <group position={[0, 1, 6]}>
-      <pointLight color={"white"} intensity={10} position={[0, 2, -0.2]} />
-      <Plane args={[2, 3]} position={[0, 0, -0.0309]} rotation-y={Math.PI}>
+    <group position={[0, 0, 0]}>
+      <Plane
+        args={[2, 3]}
+        position={[0, 0, -0.0309]}
+        rotation-y={Math.PI}
+        name="WallPhoto"
+      >
         <meshStandardMaterial side={DoubleSide} map={texture} />
       </Plane>
       <Box args={[2, 3, 0.05]}>

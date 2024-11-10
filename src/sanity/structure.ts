@@ -1,5 +1,9 @@
-import { filteredDocumentListItems, singletonDocumentListItems } from "sanity-plugin-singleton-tools";
+import {
+  filteredDocumentListItems,
+  singletonDocumentListItems,
+} from "sanity-plugin-singleton-tools";
 import type { StructureResolver } from "sanity/structure";
+import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S, context) =>
@@ -10,4 +14,5 @@ export const structure: StructureResolver = (S, context) =>
       ...singletonDocumentListItems({ S, context }),
       S.divider(),
       ...filteredDocumentListItems({ S, context }),
+      orderableDocumentListDeskItem({ type: "photo", S, context }),
     ]);

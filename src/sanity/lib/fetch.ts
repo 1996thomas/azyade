@@ -4,7 +4,7 @@ import { Photo, PHOTO_QUERYResult, Setting, Tag } from "../types/type";
 
 export async function getPhotos(): Promise<PHOTO_QUERYResult> {
   return createClient(client).fetch(
-    groq`*[_type == "photo"]{
+    groq`*[_type == "photo"]|order(orderRank){
       _id,
       title,
       slug,

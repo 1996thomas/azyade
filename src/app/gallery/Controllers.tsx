@@ -1,3 +1,4 @@
+'use client'
 import { Box, useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Group } from "three";
@@ -10,6 +11,7 @@ import { useControls } from "leva";
 import React, { useRef } from "react";
 import { Vector3 } from "three";
 import { degToRad, MathUtils } from "three/src/math/MathUtils.js";
+// import RaycastControl from "./RaycastControl";
 
 const normalizeAngle = (angle: number) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -39,13 +41,14 @@ export default function Controllers() {
       WALK_SPEED: { value: 3, min: 0.1, max: 4, step: 0.1 },
       RUN_SPEED: { value: 2, min: 0.1, max: 4, step: 0.1 },
       ROTATION_SPEED: {
-        value: degToRad(0.5),
+        value: degToRad(2),
         min: degToRad(0.1),
         max: degToRad(5),
         step: degToRad(0.1),
       },
     }
   );
+
   const rb = useRef<RapierRigidBody>(null);
   const container = useRef<Group>(null);
   const character = useRef<Group>(null);
@@ -121,17 +124,23 @@ export default function Controllers() {
     }
   });
   return (
-    <RigidBody colliders={false} position={[0, 0, 2]} lockRotations ref={rb}>
+    <RigidBody
+      colliders={false}
+      position={[0, 10, 0]}
+      lockRotations
+      ref={rb}
+      name="moi"
+    >
       <group ref={container}>
         <group ref={cameraTarget} position-z={1.5} />
-        <group ref={cameraPosition} position-y={3} position-z={-6} />
+        <group ref={cameraPosition} position-y={0} position-z={0} />
         <group ref={character}>
-          <Box args={[0.5, 1.5, 0.5]} receiveShadow castShadow>
-            <meshStandardMaterial color={"red"} />
+          <Box args={[0, 0, 0]} receiveShadow castShadow>
+            {/* <meshStandardMaterial /> */}
           </Box>
         </group>
       </group>
-      <CapsuleCollider args={[0.3, 0.5]} />
+      <CapsuleCollider args={[1, 1]} />
     </RigidBody>
   );
 }
