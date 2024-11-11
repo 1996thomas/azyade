@@ -30,7 +30,7 @@ export const photoType = defineType({
     }),
     defineField({
       name: "publishedAt",
-      title: "Date de publication",
+      title: "Date",
       type: "datetime",
       validation: (rule) => rule.required(),
     }),

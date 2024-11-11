@@ -4,7 +4,15 @@ import { eventType } from "./eventTypes";
 import { settingType } from "./settingsTypes";
 import { galleryType } from "./galeryTypes";
 import { tagType } from "./tagTypes";
+import { productionType } from "./productionTypes";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [photoType, eventType, settingType, galleryType, tagType],
+  types: [
+    photoType,
+    eventType,
+    settingType,
+    galleryType,
+    tagType,
+    productionType,
+  ],
 };

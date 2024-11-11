@@ -40,6 +40,12 @@ export async function getPhotos(): Promise<PHOTO_QUERYResult> {
 export async function getPhoto(slug: string): Promise<Photo> {
   return createClient(client).fetch(
     groq`*[_type == "photo" && slug.current == $slug][0]`,
+    { slug },{next:{revalidate: 3600}}
+  );
+}
+export async function getProduction(slug: string): Promise<Photo> {
+  return createClient(client).fetch(
+    groq`*[_type == "production" && slug.current == $slug][0]`,
     { slug }
   );
 }

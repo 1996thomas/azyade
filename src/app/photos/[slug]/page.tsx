@@ -26,7 +26,9 @@ export default async function Page({ params }: { params: Props }) {
           />
         )}
         <div className="flex-1 gap-5 flex flex-col w-full py-5 md:self-center  order-1">
-          <h2 className="text-4xl md:text-6xl font-black leading-[.8]">{photo.title}</h2>
+          <h2 className="text-4xl md:text-6xl font-black leading-[.8]">
+            {photo.title}
+          </h2>
           {photo.description !== undefined && (
             <div className="lg:w-[80%] w-full  text-sm lg:text-base ">
               <PortableText value={photo.description} components={components} />
@@ -36,7 +38,12 @@ export default async function Page({ params }: { params: Props }) {
         </div>
       </div>
       <div className="">
-        <h3 className="w-[90vw] mx-auto flex md:text-6xl text-4xl leading-none">Galerie <span className="opacity-15 ml-1 md:text-3xl text-2xl">({photo.gallery?.images.length})</span></h3>
+        <h3 className="w-[90vw] mx-auto flex md:text-6xl text-4xl leading-none">
+          Galerie
+          <span className="opacity-15 ml-1 md:text-3xl text-2xl">
+            ({photo.gallery?.images.length})
+          </span>
+        </h3>
         {photo.gallery !== undefined && (
           <SwiperCarousel gallery={photo.gallery} />
         )}

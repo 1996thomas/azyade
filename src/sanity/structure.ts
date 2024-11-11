@@ -15,4 +15,5 @@ export const structure: StructureResolver = (S, context) =>
       S.divider(),
       ...filteredDocumentListItems({ S, context }),
       orderableDocumentListDeskItem({ type: "photo", S, context }),
+      orderableDocumentListDeskItem({ type: "production", S, context }),
     ]);
