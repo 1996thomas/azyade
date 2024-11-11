@@ -35,16 +35,27 @@ export const productionType = defineType({
       of: [{ type: "block" }],
     }),
     defineField({
-      name: "synopsis",
-      title: "Synopsis",
+      name: "block_text",
+      title: "Bloc de Texte",
       type: "array",
-      of: [{ type: "block" }],
-    }),
-    defineField({
-      name: "technical_list",
-      title: "Liste technique",
-      type: "array",
-      of: [{ type: "block" }],
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Titre du bloc",
+              type: "string",
+            },
+            {
+              name: "content",
+              title: "Contenu du bloc",
+              type: "array",
+              of: [{ type: "block" }],
+            },
+          ],
+        },
+      ],
     }),
     defineField({
       name: "video",

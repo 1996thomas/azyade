@@ -75,3 +75,19 @@ export interface Tag {
 }
 
 export type Tags = Tag[];
+
+export interface Production {
+  _id: string;
+  _type: "production";
+  title: string;
+  slug: Slug;
+  presentation: PortableTextBlock;
+  synopsis: PortableTextBlock;
+  technical_list: PortableTextBlock;
+  video: {
+    id: string;
+    provider: string;
+  };
+}
+
+export type Productions = Production[]

@@ -4,10 +4,16 @@ import { gsap } from "gsap";
 import "../css/plyr.css";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
+import { Production } from "@/sanity/types/type";
 
-export default function HeroProd() {
+export default function HeroProd({
+  selectedProduction,
+}: {
+  selectedProduction: Production;
+}) {
   const [importedComp, setImportedComp] = useState<ReactElement>();
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  console.log(selectedProduction);
 
   const plyrProps = {
     options: {
@@ -148,15 +154,15 @@ export default function HeroProd() {
   }, [isLargeScreen]);
 
   return (
-    <div className="mt-20">
-      <span className="border-b-2 flex border-black w-full h-5 mb-5"></span>
+    <div>
+      {/* <span className="border-b-2 flex border-black w-full h-5 mb-5"></span>
 
       <div className="flex justify-between items-end mx-auto mb-10">
         <h2 className="text-3xl md:text-4xl leading-none">PRODUCTION</h2>
         <Link className="underline text-sm md:text-2xl" href={"/photos"}>
           Voir tous les projets
         </Link>
-      </div>
+      </div> */}
 
       <div
         ref={wrapperRef}

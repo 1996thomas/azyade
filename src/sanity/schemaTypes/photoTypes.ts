@@ -21,6 +21,7 @@ export const photoType = defineType({
       name: "slug",
       title: "Slug",
       type: "slug",
+      validation: (rule) => rule.required(),
       options: {
         source: "title",
         maxLength: 200,
@@ -38,12 +39,14 @@ export const photoType = defineType({
       name: "description",
       title: "Description",
       type: "array",
+      validation: (rule) => rule.required(),
       of: [{ type: "block" }],
     }),
     defineField({
       name: "image",
       title: "Image",
       type: "image",
+      validation: (rule) => rule.required(),
       options: {
         hotspot: true,
       },
@@ -52,6 +55,7 @@ export const photoType = defineType({
           name: "alt",
           title: "Alt",
           type: "string",
+          validation: (rule) => rule.required(),
         },
       ],
     }),

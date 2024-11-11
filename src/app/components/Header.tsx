@@ -21,7 +21,9 @@ export default function Header() {
             <li>
               <Link href={"/photos"}>Photographies</Link>
             </li>
-            <li>Productions</li>
+            <li>
+              <Link href={"/productions"}>Productions</Link>
+            </li>
             <li>À propos</li>
             <li>Contact</li>
           </ul>
@@ -37,7 +39,6 @@ export default function Header() {
           <span className="w-6 h-0.5 bg-black"></span>
         </button>
       </div>
-
       {/* Mobile navigation */}
       {isMenuOpen && (
         <nav className="lg:hidden bg-white w-full absolute top-full left-0 z-40 shadow-md">
