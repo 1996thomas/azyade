@@ -24,8 +24,9 @@ export default function Header() {
             <li>
               <Link href={"/productions"}>Productions</Link>
             </li>
-            <li>À propos</li>
-            <li>Contact</li>
+            <li>
+              <Link href={"/about"}>À propos</Link>
+            </li>
           </ul>
         </nav>
 
@@ -48,9 +49,21 @@ export default function Header() {
                 Photographies
               </Link>
             </li>
-            <li onClick={() => setIsMenuOpen(false)}>Productions</li>
-            <li onClick={() => setIsMenuOpen(false)}>À Propos</li>
-            <li onClick={() => setIsMenuOpen(false)}>Contact</li>
+            <li>
+              <Link href={"/photos"} onClick={() => setIsMenuOpen(false)}>
+                Photographies
+              </Link>
+            </li>
+            <li>
+              <Link href={"/productions"} onClick={() => setIsMenuOpen(false)}>
+                Productions
+              </Link>
+            </li>
+            <li>
+              <Link href={"/about"} onClick={() => setIsMenuOpen(false)}>
+                À propos
+              </Link>
+            </li>
           </ul>
         </nav>
       )}

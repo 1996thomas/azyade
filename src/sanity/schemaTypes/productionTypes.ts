@@ -85,5 +85,14 @@ export const productionType = defineType({
         },
       ],
     }),
+    defineField({
+      name: "poster",
+      title: "Poster",
+      type: "image",
+      validation: (rule) => rule.required(),
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
 });

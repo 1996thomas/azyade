@@ -1,6 +1,7 @@
 import { createClient, groq } from "next-sanity";
 import client from "./client";
 import {
+  About,
   Photo,
   PHOTO_QUERYResult,
   Production,
@@ -64,6 +65,12 @@ export async function getProduction(slug: string): Promise<Production> {
 export async function getSettings(): Promise<Setting> {
   return createClient(client).fetch(
     groq`*[_type == "settings"] | order(_updatedAt desc)[0]`
+  );
+}
+
+export async function getAbout(): Promise<About> {
+  return createClient(client).fetch(
+    groq`*[_type == "about"] | order(_updatedAt desc)[0]`
   );
 }
 

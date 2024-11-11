@@ -25,8 +25,8 @@ export default function HeroProd({
       type: "video",
       sources: [
         {
-          src: "h4UqMyldS7Q",
-          provider: "youtube",
+          src: selectedProduction.video.id,
+          provider: selectedProduction.video.provider,
         },
       ],
     },
@@ -155,15 +155,6 @@ export default function HeroProd({
 
   return (
     <div>
-      {/* <span className="border-b-2 flex border-black w-full h-5 mb-5"></span>
-
-      <div className="flex justify-between items-end mx-auto mb-10">
-        <h2 className="text-3xl md:text-4xl leading-none">PRODUCTION</h2>
-        <Link className="underline text-sm md:text-2xl" href={"/photos"}>
-          Voir tous les projets
-        </Link>
-      </div> */}
-
       <div
         ref={wrapperRef}
         className="h-auto m-h-[30vh] lg:h-[60vh] xl:h-screen relative"
@@ -179,26 +170,26 @@ export default function HeroProd({
           </div>
         </div>
         {isLargeScreen ? (
-          <div className="pointer-events-none z-50 absolute p-3 w-[90vw] aspect-video top-0 left-[50%] translate-x-[-50%] flex items-end">
+          <div className="z-50 h-fit absolute p-3 w-[90vw] bottom-20 left-[50%] translate-x-[-50%] flex items-end">
             <div
               ref={textRef}
               className="flex w-full items-end overflow-hidden justify-between"
             >
               <p className="text-6xl leading-none text-yellow-400 font-bold">
-                SOLASTARGIE
+                {selectedProduction.title.toUpperCase()}
               </p>
-              <Link href={"/"} className="text-4xl underline text-yellow-400">
+              <Link href={`/productions/${selectedProduction.slug.current}`} className="text-4xl underline text-yellow-400">
                 EN VOIR +
               </Link>
             </div>
           </div>
         ) : (
-          <div className="flex w-[90vw]  mx-auto justify-between items-end mt-5 mb-10">
+          <div className="flex w-[90vw] z-50  mx-auto justify-between items-end mt-5 mb-10">
             <p className="text-3xl md:text-4xl text-yellow-400 font-bold leading-none">
               SOLASTARGIE
             </p>
             <Link
-              href={"/"}
+              href={`/productions/${selectedProduction.slug.current}`}
               className="text-sm underline md:text-2xl text-yellow-400"
             >
               EN VOIR +

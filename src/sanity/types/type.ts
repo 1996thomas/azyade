@@ -70,7 +70,7 @@ export interface Gallery {
 
 export interface Tag {
   _id: string;
-  _type: "tag"; // Assurez-vous que le type correspond à celui dans Sanity
+  _type: "tag";
   name: string;
 }
 
@@ -82,12 +82,31 @@ export interface Production {
   title: string;
   slug: Slug;
   presentation: PortableTextBlock;
-  synopsis: PortableTextBlock;
-  technical_list: PortableTextBlock;
+  block_text: [
+    {
+      title: string;
+      content: PortableTextBlock;
+    },
+  ];
   video: {
     id: string;
     provider: string;
   };
+  poster: Image;
 }
 
-export type Productions = Production[]
+export type Productions = Production[];
+
+export interface About {
+  _id: string;
+  _type: "about";
+  title: string;
+  profile_picture: {
+    _type: "image";
+    asset: {
+      _ref: string;
+      _type: "reference";
+    };
+  };
+  content: PortableTextBlock;
+}

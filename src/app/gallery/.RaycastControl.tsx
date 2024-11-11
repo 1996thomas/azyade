@@ -44,8 +44,8 @@ export default function RaycastControl() {
   }, [scene]);
 
   useFrame(() => {
+    //@ts-expect-error/need to check this
     raycaster.current.setFromCamera(mouse.current, camera);
-
     if (lineRef.current) {
       const direction = raycaster.current.ray.direction
         .clone()

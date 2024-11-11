@@ -5,6 +5,7 @@ import { settingType } from "./settingsTypes";
 import { galleryType } from "./galeryTypes";
 import { tagType } from "./tagTypes";
 import { productionType } from "./productionTypes";
+import { aboutTypes } from "./aboutTypes";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -14,5 +15,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     galleryType,
     tagType,
     productionType,
+    aboutTypes,
   ],
 };
