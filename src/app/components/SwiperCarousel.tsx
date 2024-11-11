@@ -1,6 +1,6 @@
 "use client";
 import { Gallery } from "@/sanity/types/type";
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,16 +12,30 @@ import { useWindowSize } from "@uidotdev/usehooks";
 
 export default function SwiperCarousel({ gallery }: { gallery: Gallery }) {
   const { width } = useWindowSize();
-  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const [zoomedImageIndex, setZoomedImageIndex] = useState<number | null>(null);
 
-  const openZoomedImage = (imageUrl: string) => {
-    setZoomedImage(imageUrl);
+  const openZoomedImage = (index: number) => {
+    setZoomedImageIndex(index);
     document.body.style.overflow = "hidden";
   };
 
   const closeZoomedImage = () => {
-    setZoomedImage(null);
+    setZoomedImageIndex(null);
     document.body.style.overflow = "auto";
+  };
+
+  const nextImage = () => {
+    if (zoomedImageIndex !== null) {
+      const nextIndex = (zoomedImageIndex + 1) % gallery.images.length;
+      setZoomedImageIndex(nextIndex);
+    }
+  };
+
+  const previousImage = () => {
+    if (zoomedImageIndex !== null) {
+      const previousIndex = (zoomedImageIndex + 1) % gallery.images.length;
+      setZoomedImageIndex(previousIndex);
+    }
   };
 
   return (
@@ -43,7 +57,7 @@ export default function SwiperCarousel({ gallery }: { gallery: Gallery }) {
             <SwiperSlide key={i}>
               <div className="p-2">
                 <Image
-                  onClick={() => openZoomedImage(`${urlFor(image).url()}`)}
+                  onClick={() => openZoomedImage(i)}
                   src={urlFor(image).url()}
                   loading="eager"
                   alt={image.alt || "Carousel Image"}
@@ -55,10 +69,30 @@ export default function SwiperCarousel({ gallery }: { gallery: Gallery }) {
           ))}
         </Swiper>
       )}
-      {zoomedImage && (
+      {zoomedImageIndex !== null && (
         <div className="zoomed-image-container" onClick={closeZoomedImage}>
+          <div className="fixed z-50 md:top-[50%] md:translate-y-[-50%] bottom-10 text-xl flex w-[95vw] mx-auto text-white justify-between md:text-2xl ">
+            <button
+              className="hover:text-yellow-400"
+              onClick={(e) => {
+                e.stopPropagation();
+                nextImage();
+              }}
+            >
+              PRÉCÉDENTE
+            </button>
+            <button
+              className="hover:text-yellow-400"
+              onClick={(e) => {
+                e.stopPropagation();
+                previousImage();
+              }}
+            >
+              SUIVANTE
+            </button>
+          </div>
           <Image
-            src={zoomedImage}
+            src={urlFor(gallery.images[zoomedImageIndex]).url()}
             alt="zoomed-image"
             layout="fill"
             objectFit="contain"

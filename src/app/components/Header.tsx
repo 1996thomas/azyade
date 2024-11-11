@@ -11,7 +11,7 @@ export default function Header() {
         {/* Logo and site title */}
         <h1>
           <Link onClick={() => setIsMenuOpen(false)} href={"/"}>
-            Aziyade Abauzit
+            Aziyadé Abauzit
           </Link>
         </h1>
 

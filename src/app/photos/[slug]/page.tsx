@@ -36,7 +36,7 @@ export default async function Page({ params }: { params: Props }) {
         </div>
       </div>
       <div className="">
-        <h3 className="w-[90vw] mx-auto flex md:text-6xl text-4xl leading-none">Gallerie <span className="opacity-15 ml-1 md:text-3xl text-2xl">({photo.gallery?.images.length})</span></h3>
+        <h3 className="w-[90vw] mx-auto flex md:text-6xl text-4xl leading-none">Galerie <span className="opacity-15 ml-1 md:text-3xl text-2xl">({photo.gallery?.images.length})</span></h3>
         {photo.gallery !== undefined && (
           <SwiperCarousel gallery={photo.gallery} />
         )}
