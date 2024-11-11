@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function HeroProd() {
   const [importedComp, setImportedComp] = useState<ReactElement>();
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   const plyrProps = {
     options: {
@@ -39,7 +39,9 @@ export default function HeroProd() {
       setIsLargeScreen(window.innerWidth > 1024);
     };
 
+    handleResize(); // Set initial screen size check on mount
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -156,7 +158,10 @@ export default function HeroProd() {
         </Link>
       </div>
 
-      <div ref={wrapperRef} className="h-auto m-h-[30vh] lg:h-[60vh] xl:h-screen relative">
+      <div
+        ref={wrapperRef}
+        className="h-auto m-h-[30vh] lg:h-[60vh] xl:h-screen relative"
+      >
         <div
           ref={videoRef}
           className={`flex items-center justify-center w-[90vw] lg:w-[82vw] aspect-video overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500 ${
