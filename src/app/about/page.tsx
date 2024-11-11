@@ -9,11 +9,13 @@ import Link from "next/link";
 export default async function page() {
   const content = await getAbout();
   const settings = await getSettings();
-  console.log(content);
   return (
-    <div className="mt-32 w-[80vw] mx-auto">
-      <div className="flex w-full items-center">
-        <div className="flex-1 flex">
+    <div className="mt-32 w-[90vw] mx-auto">
+      <div className="flex w-full flex-col xl:flex-row items-center">
+        <h1 className="text-7xl text-nowrap block xl:hidden">
+          {settings.site_title}
+        </h1>
+        <div className="flex-1 flex justify-center">
           <Image
             className="object-cover"
             src={urlFor(content.profile_picture).url()}
@@ -23,10 +25,12 @@ export default async function page() {
           />
         </div>
         <div className="flex flex-1 flex-col gap-5">
-          <h1 className="text-5xl">{settings.site_title}</h1>
-          <div>
+          <h1 className="text-5xl hidden xl:block">{settings.site_title}</h1>
+          <div className="xl:w-[90%]">
             <PortableText components={components} value={content.content} />
           </div>
+          <span className="border-b-2 flex border-black h-5 mb-5 my-5 w-full mx-auto" />
+
           <div className="flex gap-10 justify-center">
             {settings.social_links.map((link) => (
               <Link href={link.link} key={link.link}>
