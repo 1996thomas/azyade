@@ -1,4 +1,5 @@
 import SwiperCarousel from "@/app/components/SwiperCarousel";
+import Tags from "@/app/components/Tags";
 import { getPhoto, getPhotoTags } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
@@ -13,10 +14,10 @@ export default async function Page({ params }: { params: Props }) {
 
   return (
     <>
-      <div className="flex flex-col justify-between mb-10 p-1 lg:w-[80vw] mx-auto mt-36 lg:flex-row-reverse ">
+      <div className="flex flex-col justify-between mb-10 p-2 xl:w-[90vw] lg:w-[80vw] mx-auto mt-36 md:flex-row-reverse ">
         {photo?.image && (
           <Image
-            className="flex-1 w-full aspect-square h-auto object-cover lg:order-1"
+            className="flex-1 w-full aspect-square h-auto object-cover lg:order-1 bg-red-100"
             alt={photo.image.alt || "Image"}
             src={urlFor(photo.image).url()}
             width={800}
@@ -30,17 +31,7 @@ export default async function Page({ params }: { params: Props }) {
               <PortableText value={photo.description} />
             </div>
           )}
-          <ul className="flex gap-3">
-            {tags &&
-              tags.map((tag, key) => (
-                <li
-                  key={key}
-                  className="text-xl px-4 py-1 border-black border-[1px]"
-                >
-                  {tag.name}
-                </li>
-              ))}
-          </ul>
+          <Tags tags={tags} />
         </div>
       </div>
       <div className="">

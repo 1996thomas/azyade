@@ -3,9 +3,11 @@ import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import "../css/plyr.css";
 import { useGSAP } from "@gsap/react";
+import Link from "next/link";
 
 export default function HeroProd() {
   const [importedComp, setImportedComp] = useState<ReactElement>();
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
 
   const plyrProps = {
     options: {
@@ -32,6 +34,13 @@ export default function HeroProd() {
       setImportedComp(<Plyr {...plyrProps} />);
     };
     importComp();
+
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const videoRef = useRef<HTMLDivElement>(null);
@@ -44,6 +53,8 @@ export default function HeroProd() {
   const textIntensity = 0.1;
 
   useGSAP(() => {
+    if (!isLargeScreen) return;
+
     const handleMove = (e: MouseEvent) => {
       if (!isHovering.current) return;
 
@@ -74,7 +85,7 @@ export default function HeroProd() {
 
       gsap.to(textRef.current, {
         x: -gsap.utils.clamp(-maxX / 2, maxX / 2, textMousePos.x - 20),
-        y: - gsap.utils.clamp(0, maxY, textMousePos.y - 10),
+        y: -gsap.utils.clamp(0, maxY, textMousePos.y - 10),
         rotation:
           speed *
           videoIntensity *
@@ -132,31 +143,58 @@ export default function HeroProd() {
         window.removeEventListener("mousemove", handleMove);
       }
     };
-  }, []);
+  }, [isLargeScreen]);
 
   return (
-    <>
-      <div ref={wrapperRef} className="h-screen relative mt-20">
+    <div className="mt-20">
+      <span className="border-b-2 flex border-black w-full h-5 mb-5"></span>
+
+      <div className="flex justify-between items-end mx-auto ">
+        <h2 className="text-3xl md:text-4xl leading-none">PRODUCTION</h2>
+        <Link className="underline text-sm md:text-2xl" href={"/photos"}>
+          Voir tous les projets
+        </Link>
+      </div>
+
+      <div ref={wrapperRef} className="h-auto m-h-[30vh] lg:h-[60vh] xl:h-screen relative">
         <div
           ref={videoRef}
-          className="flex items-center justify-center w-[82vw] aspect-video overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500"
+          className={`flex items-center justify-center w-[90vw] lg:w-[82vw] aspect-video overflow-hidden absolute top-0 left-[50%] translate-x-[-50%] bg-slate-500 ${
+            isLargeScreen ? "" : "relative"
+          }`}
         >
           <div className="h-full w-full p-0">
             {importedComp && importedComp !== undefined && importedComp}
           </div>
         </div>
-        <div className="pointer-events-none z-50 absolute p-3 w-[82vw] aspect-video top-0 left-[50%] translate-x-[-50%] flex items-end">
-          <div
-            ref={textRef}
-            className="flex w-full items-end overflow-hidden justify-between"
-          >
-            <p className="text-5xl text-yellow-400 font-bold">SOLASTARGIE</p>
-            <p className="text-4xl text-yellow-400">
-              Un film de Aziyade Abauzit
-            </p>
+        {isLargeScreen ? (
+          <div className="pointer-events-none z-50 absolute p-3 w-[82vw] aspect-video top-0 left-[50%] translate-x-[-50%] flex items-end">
+            <div
+              ref={textRef}
+              className="flex w-full items-end overflow-hidden justify-between"
+            >
+              <p className="text-6xl leading-none text-yellow-400 font-bold">
+                SOLASTARGIE
+              </p>
+              <Link href={"/"} className="text-4xl underline text-yellow-400">
+                EN VOIR +
+              </Link>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="flex w-[90vw] md:w-[80vw] mx-auto justify-between items-end mt-5 mb-10">
+            <p className="text-3xl md:text-4xl text-yellow-400 font-bold leading-none">
+              SOLASTARGIE
+            </p>
+            <Link
+              href={"/"}
+              className="text-sm underline md:text-2xl text-yellow-400"
+            >
+              EN VOIR +
+            </Link>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 }

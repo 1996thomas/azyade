@@ -73,3 +73,5 @@ export interface Tag {
   _type: "tag"; // Assurez-vous que le type correspond à celui dans Sanity
   name: string;
 }
+
+export type Tags = Tag[];

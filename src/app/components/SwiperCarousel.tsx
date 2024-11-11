@@ -1,6 +1,6 @@
 "use client";
 import { Gallery } from "@/sanity/types/type";
-import React from "react";
+import React, {useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -12,6 +12,18 @@ import { useWindowSize } from "@uidotdev/usehooks";
 
 export default function SwiperCarousel({ gallery }: { gallery: Gallery }) {
   const { width } = useWindowSize();
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+
+  const openZoomedImage = (imageUrl: string) => {
+    setZoomedImage(imageUrl);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeZoomedImage = () => {
+    setZoomedImage(null);
+    document.body.style.overflow = "auto";
+  };
+
   return (
     <div className="">
       {width && (
@@ -31,6 +43,7 @@ export default function SwiperCarousel({ gallery }: { gallery: Gallery }) {
             <SwiperSlide key={i}>
               <div className="p-2">
                 <Image
+                  onClick={() => openZoomedImage(`${urlFor(image).url()}`)}
                   src={urlFor(image).url()}
                   loading="eager"
                   alt={image.alt || "Carousel Image"}
@@ -41,6 +54,17 @@ export default function SwiperCarousel({ gallery }: { gallery: Gallery }) {
             </SwiperSlide>
           ))}
         </Swiper>
+      )}
+      {zoomedImage && (
+        <div className="zoomed-image-container" onClick={closeZoomedImage}>
+          <Image
+            src={zoomedImage}
+            alt="zoomed-image"
+            layout="fill"
+            objectFit="contain"
+            className="object-cover"
+          />
+        </div>
       )}
     </div>
   );

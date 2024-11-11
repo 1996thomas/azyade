@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import SkeletonPhotoCards from "./SkeletonPhotoCards";
+import Tags from "./Tags";
 
 export default function PhotoCards({ list }: { list: PHOTO_QUERYResult }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +23,7 @@ export default function PhotoCards({ list }: { list: PHOTO_QUERYResult }) {
   const safeList = Array.isArray(list) ? list : [];
 
   return (
-    <div className=" mx-auto w-[80vw]">
+    <div>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {isLoading ? (
           Array.from({ length: 12 }).map((_, idx) => (
@@ -30,7 +31,7 @@ export default function PhotoCards({ list }: { list: PHOTO_QUERYResult }) {
           ))
         ) : safeList.length > 0 ? (
           safeList.map((item) => (
-            <li key={item._id} className="text-3xl first:border-t-[1px] mt-5">
+            <li key={item._id} className="text-2xl first:border-t-[1px] mt-5">
               <Link
                 href={`photos/${item.slug.current}`}
                 className="flex flex-col items-center"
@@ -44,17 +45,7 @@ export default function PhotoCards({ list }: { list: PHOTO_QUERYResult }) {
                 />
                 <div className="w-full">
                   <h3 className="font-semibold">{item.title}</h3>
-                  <ul className="flex gap-3">
-                    {item.tags &&
-                      item.tags.map((tag) => (
-                        <li
-                          key={tag._id}
-                          className="text-xl px-2 py-1 border-black border-[1px]"
-                        >
-                          {tag.name}
-                        </li>
-                      ))}
-                  </ul>
+                  {item.tags && <Tags tags={item.tags} />}
                 </div>
               </Link>
             </li>

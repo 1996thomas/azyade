@@ -1,12 +1,22 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="absolute text-m top-0 left-0 w-full z-50">
-      <div className="flex lg:w-[82vw] mx-auto justify-between p-5">
-        <nav className="">
+      <div className="flex  w-[90vw] md:w-[80vw] mx-auto justify-between items-center py-5">
+        {/* Logo and site title */}
+        <h1>
+          <Link onClick={() => setIsMenuOpen(false)} href={"/"}>
+            Aziyade Portfolio
+          </Link>
+        </h1>
+
+        {/* Desktop navigation */}
+        <nav className="hidden lg:flex">
           <ul className="flex gap-5">
             <li>
               <Link href={"/photos"}>Photography</Link>
@@ -16,10 +26,33 @@ export default function Header() {
             <li>Contact</li>
           </ul>
         </nav>
-        {/* <h1>
-          <Link href={"/"}>Aziyade Portfolio</Link>
-        </h1> */}
+
+        {/* Burger icon for mobile */}
+        <button
+          className="lg:hidden flex flex-col gap-1"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <span className="w-6 h-0.5 bg-black"></span>
+          <span className="w-6 h-0.5 bg-black"></span>
+          <span className="w-6 h-0.5 bg-black"></span>
+        </button>
       </div>
+
+      {/* Mobile navigation */}
+      {isMenuOpen && (
+        <nav className="lg:hidden bg-white w-full absolute top-full left-0 z-40 shadow-md">
+          <ul className="flex flex-col items-center gap-5 p-5">
+            <li>
+              <Link href={"/photos"} onClick={() => setIsMenuOpen(false)}>
+                Photography
+              </Link>
+            </li>
+            <li onClick={() => setIsMenuOpen(false)}>Video</li>
+            <li onClick={() => setIsMenuOpen(false)}>About me</li>
+            <li onClick={() => setIsMenuOpen(false)}>Contact</li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }
