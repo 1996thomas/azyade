@@ -6,12 +6,12 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="absolute text-m top-0 left-0 w-full z-50">
-      <div className="flex  w-[90vw] md:w-[80vw] mx-auto justify-between items-center py-5">
+    <header className="absolute text-2xl top-0 left-0 w-full z-50">
+      <div className="flex  w-[90vw] mx-auto justify-between items-center py-5">
         {/* Logo and site title */}
         <h1>
           <Link onClick={() => setIsMenuOpen(false)} href={"/"}>
-            Aziyade Portfolio
+            Aziyade Abauzit
           </Link>
         </h1>
 
@@ -19,10 +19,10 @@ export default function Header() {
         <nav className="hidden lg:flex">
           <ul className="flex gap-5">
             <li>
-              <Link href={"/photos"}>Photography</Link>
+              <Link href={"/photos"}>Photographies</Link>
             </li>
-            <li>Video</li>
-            <li>About me</li>
+            <li>Productions</li>
+            <li>À propos</li>
             <li>Contact</li>
           </ul>
         </nav>
@@ -44,11 +44,11 @@ export default function Header() {
           <ul className="flex flex-col items-center gap-5 p-5">
             <li>
               <Link href={"/photos"} onClick={() => setIsMenuOpen(false)}>
-                Photography
+                Photographies
               </Link>
             </li>
-            <li onClick={() => setIsMenuOpen(false)}>Video</li>
-            <li onClick={() => setIsMenuOpen(false)}>About me</li>
+            <li onClick={() => setIsMenuOpen(false)}>Productions</li>
+            <li onClick={() => setIsMenuOpen(false)}>À Propos</li>
             <li onClick={() => setIsMenuOpen(false)}>Contact</li>
           </ul>
         </nav>
