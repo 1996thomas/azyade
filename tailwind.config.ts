@@ -14,8 +14,8 @@ const config: Config = {
       "2xl": "1.563rem",
       "3xl": "1.953rem",
       "4xl": "2.441rem",
-      "5xl": "3rem",
-      "6xl": "clamp(7rem,10vw,20rem)",
+      "5xl": "4rem",
+      "6xl": "clamp(6rem,10vw,7rem)",
     },
     extend: {
       colors: {
