@@ -36,7 +36,7 @@ export const productionType = defineType({
     }),
     defineField({
       name: "block_text",
-      title: "Bloc de Texte",
+      title: "Liste technique",
       type: "array",
       of: [
         {
