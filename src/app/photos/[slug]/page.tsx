@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: Props }) {
       <div className="flex flex-col justify-between mb-10 py-2 w-[90vw] mx-auto mt-20 md:flex-row-reverse gap-5">
         {photo?.image && (
           <Image
-            className="flex-1 w-full aspect-square h-auto object-cover lg:order-1 bg-red-100 max-w-[700px] lg:max-w-none"
+            className="flex-1 w-full aspect-square h-auto object-cover lg:order-1 bg-red-100 max-w-[650px]"
             alt={photo.image.alt || "Image"}
             src={urlFor(photo.image).url()}
             width={800}
