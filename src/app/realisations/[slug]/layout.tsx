@@ -8,8 +8,8 @@ export async function generateMetadata({ params }: { params: Props }) {
   const { slug } = await params;
   const meta = await getProduction(slug);
   return {
-    title: meta?.title || "Default Title",
-    description: meta?.presentation || "Default description",
+    title: meta?.title || "éalisation de Aziyadé",
+    description: meta?.presentation || "Réalisation de Aziyadé",
     openGraph: {
       title: meta?.title,
       description: meta?.presentation,

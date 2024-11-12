@@ -8,7 +8,7 @@ export default async function page() {
   return (
     <div className="flex justify-between flex-col mt-20  w-[90vw] mx-auto">
       <h2 className="text-4xl leading-none">
-        PRODUCTIONS
+        RÉALISATIONS
         <span className="opacity-15 ml-1 md:text-3xl text-2xl">
           ({productions.length})
         </span>
