@@ -5,6 +5,8 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 import React from "react";
 type Props = Promise<{ slug: string }>;
+export const revalidate = 60; // Actualise toutes les 60 secondes
+
 
 export default async function page({ params }: { params: Props }) {
   const { slug } = await params;

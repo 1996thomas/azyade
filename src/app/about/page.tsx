@@ -6,6 +6,9 @@ import React from "react";
 import { components } from "../components/PortableTextComp";
 import Link from "next/link";
 
+export const revalidate = 60; // Actualise toutes les 60 secondes
+
+
 export default async function page() {
   const content = await getAbout();
   const settings = await getSettings();

@@ -6,6 +6,9 @@ import { urlFor } from "@/sanity/lib/image";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+export const revalidate = 60; // Actualise toutes les 60 secondes
+
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",

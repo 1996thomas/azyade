@@ -2,6 +2,7 @@
 import { getProduction } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 type Props = Promise<{ slug: string }>;
+export const revalidate = 60; // Actualise toutes les 60 secondes
 
 export async function generateMetadata({ params }: { params: Props }) {
   const { slug } = await params;
