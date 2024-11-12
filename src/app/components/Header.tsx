@@ -22,7 +22,7 @@ export default function Header() {
               <Link href={"/photos"}>Photographies</Link>
             </li>
             <li>
-              <Link href={"/productions"}>Réalisations</Link>
+              <Link href={"/realisations"}>Réalisations</Link>
             </li>
             <li>
               <Link href={"/about"}>À propos</Link>
@@ -50,7 +50,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href={"/productions"} onClick={() => setIsMenuOpen(false)}>
+              <Link href={"/realisations"} onClick={() => setIsMenuOpen(false)}>
                 Réalisations
               </Link>
             </li>

@@ -18,7 +18,7 @@ export default async function Home() {
             ({productions.length})
           </span>
         </h2>
-        <Link className="underline text-sm md:text-2xl" href={"/productions"}>
+        <Link className="underline text-sm md:text-2xl" href={"/realisation"}>
           Voir tous les projets
         </Link>
       </div>
