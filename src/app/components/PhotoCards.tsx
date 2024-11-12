@@ -15,7 +15,7 @@ export default function PhotoCards({ list }: { list: PHOTO_QUERYResult }) {
       if (list && list.length > 0) {
         setIsLoading(false);
       }
-    }, 3500);
+    }, 1000);
 
     return () => clearTimeout(timeoutId);
   }, [list]);
