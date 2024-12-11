@@ -1,12 +1,12 @@
 import { getPhotos, getProductions } from "@/sanity/lib/fetch";
-import HeroProd from "./components/HeroProd";
 import PhotoCards from "./components/PhotoCards";
 import Link from "next/link";
+import ProductionsList from "./components/ProductionsList";
 
-export const revalidate = 60; // Actualise toutes les 60 secondes
+export const revalidate = 60; 
 
 export default async function Home() {
-  const photos = await getPhotos(); // Server-side data fetching
+  const photos = await getPhotos(); 
   const productions = await getProductions();
   return (
     <div className="mb-20 w-[90vw] mx-auto">
@@ -22,7 +22,7 @@ export default async function Home() {
           Voir tous les projets
         </Link>
       </div>
-      <HeroProd selectedProduction={productions[0]} />
+      <ProductionsList list={productions} />
       <span className="border-b-2 flex border-black w-full h-5 mb-5 my-20" />
       <div className="flex justify-between items-end">
         <h2 className="text-3xl md:text-4xl leading-none">

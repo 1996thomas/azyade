@@ -44,7 +44,7 @@ export const components: PortableTextComponents = {
     ),
     // Custom renderer for unordered list
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside my-4 ml-6">{children}</ul>
+      <ul className="list-disc list-inside my-4 ml-2 ">{children}</ul>
     ),
   },
   marks: {
