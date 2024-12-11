@@ -7,12 +7,24 @@ export const revalidate = 60; // Actualise toutes les 60 secondes
 export async function generateMetadata({ params }: { params: Props }) {
   const { slug } = await params;
   const meta = await getProduction(slug);
+
+  const presentation =
+    meta?.presentation
+    //@ts-expect-error // Map block portable issue
+      ?.map((block: HTMLDivElement) => {
+        if (block.children && Array.isArray(block.children)) {
+          return block.children.map((child) => child.text).join("");
+        }
+        return "";
+      })
+      .join(" ") || "";
+
   return {
-    title: meta?.title || "éalisation de Aziyadé",
-    description: meta?.presentation || "Réalisation de Aziyadé",
+    title: meta?.title || "Réalisation de Aziyadé",
+    description: presentation,
     openGraph: {
       title: meta?.title,
-      description: meta?.presentation,
+      description: presentation,
       images: [
         {
           url: urlFor(meta?.poster).url(),
