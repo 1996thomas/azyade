@@ -1,4 +1,3 @@
-import { getPhotos, getProductions } from "@/sanity/lib/fetch";
 import Link from "next/link";
 
 export const revalidate = 60; 
