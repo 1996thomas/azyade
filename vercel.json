@@ -1,6 +1,6 @@
 {
   "functions": {
-    "studio/[[...tool]].js": {
+    "studio/[[...tool]].rsc": {
       "maxDuration": 30
     }
   }
