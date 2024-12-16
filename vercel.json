@@ -1,6 +1,6 @@
 {
   "functions": {
-    "studio/[[...tools]]": {
+    "studio/[[...tool]]": {
       "maxDuration": 30
     }
   }
