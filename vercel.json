@@ -1,7 +1,0 @@
-{
-  "functions": {
-    "studio/[[...tool]].rsc": {
-      "maxDuration": 30
-    }
-  }
-}
