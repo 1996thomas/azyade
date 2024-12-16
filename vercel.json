@@ -1,0 +1,8 @@
+{
+    "functions": {
+      "src/app/studio/[[...tool]].js": {
+        "maxDuration": 30
+      }
+    }
+  }
+  
