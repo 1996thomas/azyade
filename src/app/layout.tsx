@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Raleway } from "next/font/google"; // Importez la font Inter
 import "./globals.css";
 import { getSettings } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
@@ -8,22 +8,11 @@ import Footer from "./components/Footer";
 
 export const revalidate = 60; // Actualise toutes les 60 secondes
 
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-
-const groteskBold = localFont({
-  src: "./fonts/PPRightGrotesk-Bold.woff",
-  variable: "--font-grotesk-bold",
-  weight: "900",
-});
-const groteskMedium = localFont({
-  src: "./fonts/PPRightGrotesk-Medium.woff",
-  variable: "--font-grotesk-medium",
-  weight: "900",
+// Charger la police Google Inter
+const inter = Raleway({
+  subsets: ["latin"], // Ajoutez d'autres subsets si nécessaires
+  variable: "--font-inter", // Nom de la variable CSS pour cette font
+  display: "swap", // Utilisation du mode swap pour améliorer les performances
 });
 
 // Fonction asynchrone pour générer les métadonnées
@@ -47,16 +36,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${groteskBold.variable} ${groteskMedium.variable} antialiased`}
-      >
+      <body className={`${inter.variable} antialiased`}>
         <Header />
         <main>{children}</main>
         <Footer />

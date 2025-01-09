@@ -51,11 +51,10 @@ export default function SwiperCarousel({ gallery }: { gallery: Gallery }) {
           }}
           navigation
           modules={[Pagination, Navigation]}
-          className="mySwiper"
         >
           {gallery.images.map((image, i) => (
             <SwiperSlide key={i}>
-              <div className="p-2">
+              <div className="p-2 ">
                 <Image
                   onClick={() => openZoomedImage(i)}
                   src={urlFor(image).url()}

@@ -8,7 +8,6 @@ import Link from "next/link";
 
 export const revalidate = 60; // Actualise toutes les 60 secondes
 
-
 export default async function page() {
   const content = await getAbout();
   const settings = await getSettings();
@@ -32,9 +31,9 @@ export default async function page() {
           <div className="xl:w-[90%]">
             <PortableText components={components} value={content.content} />
           </div>
-          <span className="border-b-2 flex border-black h-5 mb-5 my-5 w-full mx-auto" />
+          <span className="hidden xl:flex border-b-2 border-black h-5 mb-5 my-5 w-full mx-auto" />
 
-          <div className="flex gap-10 justify-center">
+          <div className="hidden xl:flex gap-10 justify-center">
             {settings.social_links.map((link) => (
               <Link href={link.link} key={link.link}>
                 <Image

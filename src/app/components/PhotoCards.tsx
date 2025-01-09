@@ -24,7 +24,7 @@ export default function PhotoCards({ list }: { list: PHOTO_QUERYResult }) {
 
   return (
     <div>
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {isLoading ? (
           Array.from({ length: 12 }).map((_, idx) => (
             <SkeletonPhotoCards key={idx} />
@@ -34,19 +34,19 @@ export default function PhotoCards({ list }: { list: PHOTO_QUERYResult }) {
             <li key={item._id} className="text-2xl first:border-t-[1px] mt-5">
               <Link
                 href={`photos/${item.slug.current}`}
-                className="flex flex-col items-center"
+                className="flex flex-col gap-1 justify-between h-full"
               >
                 <Image
                   className="aspect-square object-cover w-full"
                   src={urlFor(item.image).url()}
-                  width={300}
-                  height={300}
+                  width={400}
+                  height={400}
                   alt={item.image.alt}
                 />
                 <div className="w-full">
-                  <h3 className="font-semibold">{item.title}</h3>
-                  {item.tags && <Tags tags={item.tags} />}
+                  <h3 className="font-bold">{item.title}</h3>
                 </div>
+                {item.tags && <Tags tags={item.tags} />}
               </Link>
             </li>
           ))

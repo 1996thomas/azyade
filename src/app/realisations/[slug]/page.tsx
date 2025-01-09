@@ -1,5 +1,4 @@
 import { components } from "@/app/components/PortableTextComp";
-import { checkProvider } from "@/app/utils/checkProvider";
 import { getProduction } from "@/sanity/lib/fetch";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
@@ -13,35 +12,58 @@ export default async function page({ params }: { params: Props }) {
   const production = await getProduction(slug);
   return (
     <div className="min-h-screen">
-      <div className="flex bg-black h-[20vh] lg:h-[50vh] justify-center mt-20">
-        <div className="">
-          {checkProvider(production.video.provider, production.video.id)}
-        </div>
-      </div>
-      <div className="lg:mt-20 w-[90vw] mx-auto">
-        <h2 className="text-6xl text-center">
+      <div className="md:mt-28 mt-20 w-[90vw] mx-auto flex flex-col md:gap-5 items-center">
+        <h2 className="text-4xl md:text-6xl  text-center">
           {production.title.toUpperCase()}
         </h2>
-        <div className="lg:flex lg:items-center gap-10">
-          <Image
-            src={urlFor(production.poster).url()}
-            alt={`Affiche du projet ${production.title}`}
-            width={400}
-            height={600}
+        <Image
+        className="md:max-w-[50vw] w-full md:max-h-[50vh] object-contain"
+          src={urlFor(production.poster).url()}
+          alt={`Affiche du projet ${production.title}`}
+          width={400}
+          height={600}
+        />
+        <div className="md:text-base md:max-w-[50vw]">
+          <PortableText
+            value={production.presentation}
+            components={components}
           />
-          <div className="flex flex-col gap-0 leading-none text-xl">
-            <PortableText
-              value={production.presentation}
-              components={components}
-            />
-          </div>
         </div>
-        <span className="border-b-2 flex border-black w-full h-5 mb-5 my-20" />
+        {production.paragraph_text && (
+          <span className="border-b-2 flex border-gray-500 w-full h-5 mb-5 md:my-20" />
+        )}
+        <div>
+          {production.paragraph_text?.map((block, key) => (
+            <div
+              key={key}
+              className="flex text-justify md:gap-5 flex-col  md:max-w-[40vw] mb-4 "
+            >
+              <h3 className="text-3xl  w-full">{block.title}</h3>
 
-        <div className="grid grid-cols-2 mt-20">
+              <PortableText value={block.content} components={components} />
+            </div>
+          ))}
+        </div>
+        {production.video.id && production.video.provider === "youtube" && (
+          <iframe
+          className="w-full md:max-w-[50vw] aspect-video "
+            src={`https://www.youtube.com/embed/${production.video.id}`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        )}
+        {production.block_text && (
+          <span className="border-b-2 flex border-gray-500 w-full h-5 mb-5 md:my-20" />
+        )}{" "}
+        <div className="grid grid-cols-2 md:mt-20 text-sm">
           {production.block_text?.map((block, key) => (
-            <div key={key} className="flex gap-5 flex-col">
-              <h3 className="text-3xl max-w-[220px] w-full">{block.title}</h3>
+            <div key={key} className="flex md:gap-5 flex-col">
+              <h3 className="text-base md:text-3xl w-full">
+                {block.title}
+              </h3>
               <PortableText value={block.content} components={components} />
             </div>
           ))}

@@ -1,21 +1,28 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsVisible(true), 1200);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
-    <header className="absolute text-2xl top-0 left-0 w-full z-50">
+    <header
+      className={`absolute text-2xl top-0 left-0 w-full z-49 transition-opacity duration-500 ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
+    >
       <div className="flex  w-[90vw] mx-auto justify-between items-center py-5">
-        {/* Logo and site title */}
         <h1>
           <Link onClick={() => setIsMenuOpen(false)} href={"/"}>
             Aziyadé Abauzit
           </Link>
         </h1>
-
-        {/* Desktop navigation */}
         <nav className="hidden lg:flex">
           <ul className="flex gap-5">
             <li>

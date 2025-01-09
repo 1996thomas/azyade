@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Props }) {
 
   const presentation =
     meta?.presentation
-    //@ts-expect-error // Map block portable issue
+      //@ts-expect-error // Map block portable issue
       ?.map((block: HTMLDivElement) => {
         if (block.children && Array.isArray(block.children)) {
           return block.children.map((child) => child.text).join("");
@@ -18,7 +18,6 @@ export async function generateMetadata({ params }: { params: Props }) {
         return "";
       })
       .join(" ") || "";
-
   return {
     title: meta?.title || "Réalisation de Aziyadé",
     description: presentation,

@@ -3,12 +3,12 @@ import React from "react";
 
 export default function Tags({ tags }: { tags: TagsType }) {
   return (
-    <ul className="flex gap-2">
+    <ul className="flex gap-2 h-fit">
       {tags &&
         tags.map((tag, key) => (
           <li
             key={key}
-            className="text-xl px-3  border-black border-[1px]"
+            className="md:text-base text-sm px-3 text-gray-500  border-gray-400 border-[1px] h-fit lead text-nowrap"
           >
             {tag.name}
           </li>

@@ -88,6 +88,12 @@ export interface Production {
       content: PortableTextBlock;
     },
   ];
+  paragraph_text: [
+    {
+      title: string;
+      content: PortableTextBlock;
+    },
+  ];
   video: {
     id: string;
     provider: string;

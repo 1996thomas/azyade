@@ -16,13 +16,13 @@ export default function Template({ children }: { children: React.ReactNode }) {
       { y: "100%", opacity: 1 },
       {
         y: "0%",
-        duration: 0.8,
+        duration: 0.9,
         ease: "power1.inOut",
       }
     )
       .to(overlay.current, {
         y: "-100%",
-        duration: 0.8,
+        duration: 0.5,
         ease: "power1.inOut",
         onComplete: () => {
           if (overlay.current) {

@@ -20,7 +20,7 @@ export default function ProductionsList({ list }: { list: Productions }) {
 
   return (
     <div className="mt-20 mx-auto w-[90vw]">
-      <ul className="flex flex-col gap-32">
+      <ul className="flex flex-col gap-9">
         {isLoading ? (
           Array.from({ length: 2 }).map((_, idx) => (
             <li key={idx}>
@@ -31,7 +31,7 @@ export default function ProductionsList({ list }: { list: Productions }) {
           safeList.map((item) => (
             <li
               key={item._id}
-              className="border-b-[2px] lg:pb-20 pb-10 border-black last:border-none"
+              className="border-b-[2px] lg:pb-20 pb-10 border-gray-500 last:border-none"
             >
               <RealCard data={item} />
             </li>

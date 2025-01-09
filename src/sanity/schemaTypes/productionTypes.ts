@@ -35,6 +35,29 @@ export const productionType = defineType({
       of: [{ type: "block" }],
     }),
     defineField({
+      name: "paragraph_text",
+      title: "Description du projet",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "title",
+              title: "Titre du bloc",
+              type: "string",
+            },
+            {
+              name: "content",
+              title: "Contenu du bloc",
+              type: "array",
+              of: [{ type: "block" }],
+            },
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: "block_text",
       title: "Liste technique",
       type: "array",
